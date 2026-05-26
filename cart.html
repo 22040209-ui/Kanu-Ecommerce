@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - Kanu & Amigos</title>
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="navbar.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+ <nav class="navbar" id="main-navbar">
+        <div id="navbar-placeholder">
+        </div>
+    </nav>
+    <div class="cart-container">
+        
+        <div id="empty-state" class="cart-empty" style="display: none;">
+            <h2 class="cart-empty__title">Tu carrito está vacío</h2>
+            <p class="cart-empty__text">¡Parece que aún no has elegido nada para tu mascota!</p>
+            <a href="shop.html" class="cart-empty__btn">Ir a comprar</a>
+        </div>
+
+        <div id="filled-state">
+            <h1 class="cart-title">Carrito de Compras</h1>
+            
+            <div class="cart-layout">
+                
+                <div class="cart-items-wrapper">
+                    <ul class="cart-list" id="cart-list">
+                    </ul>
+                </div>
+
+                <div class="cart-summary">
+                    <h2 class="cart-summary__title">Resumen del pedido</h2>
+
+                    <div class="cart-summary__dividers">
+                        <div class="cart-summary__row">
+                            <p class="cart-summary__label">Subtotal</p>
+                            <p class="cart-summary__value" id="cart-subtotal">$0.00</p>
+                        </div>
+                        <div class="cart-summary__row cart-summary__row--total">
+                            <p class="cart-summary__label">Total</p>
+                            <p class="cart-summary__value" id="cart-total">$0.00</p>
+                        </div>
+                    </div>
+
+                    <button id="checkout-btn" class="cart-summary__checkout-btn">
+                        Proceder al Pago 
+                        <i data-lucide="arrow-right" style="width:16px; height:16px; margin-left: 0.5rem;"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="cart.js"></script>
+    <script src="component-loader.js"></script>
+</body>
+</html>

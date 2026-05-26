@@ -1,0 +1,133 @@
+<div class="auth-overlay" id="auth-modal">
+  <div class="modal">
+
+    <button class="modal-close-btn" onclick="document.getElementById('auth-modal').classList.remove('is-open')" aria-label="Cerrar">
+      <i data-lucide="x" style="width:18px;height:18px;"></i>
+    </button>
+
+    <div class="tabs" id="tabs">
+      <button class="tab-btn active" onclick="switchTab('login')">Iniciar Sesión Club Pet</button>
+      <button class="tab-btn" onclick="switchTab('register')">Registrar Dueño &amp; Mascota</button>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success-screen" id="success-screen">
+      <div class="success-icon">🐾</div>
+      <h3 id="success-title">¡Bienvenido de vuelta!</h3>
+      <p id="success-msg">Accediendo a tu cuenta Club Pet...</p>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="panel active" id="panel-login">
+      <p class="panel-title">Acceso a Socios Registrados</p>
+      <p class="panel-sub">Ingresa tus datos del Club Pet de Kanu & Amigos para recibir tu precio VIP personalizado.</p>
+
+      <div class="alert error-alert" id="login-error"></div>
+      <div class="alert alert-hint" id="login-hint">💡 Usa <strong>demo@kanu.com</strong> / <strong>123456</strong> para probar.</div>
+
+      <div class="field">
+        <label>Correo electrónico</label>
+        <input type="email" id="login-email" placeholder="tu-correo@ejemplo.com">
+      </div>
+      <div class="field">
+        <label>Contraseña</label>
+        <input type="password" id="login-pass" placeholder="••••••••">
+      </div>
+      <span class="forgot">¿Olvidaste tu contraseña?</span>
+      <button class="auth-submit" id="login-btn" onclick="doLogin()">Ingresar de Forma Segura</button>
+    </div>
+
+    <!-- REGISTER -->
+<!-- REGISTER -->
+<div class="panel" id="panel-register">
+  <p class="panel-title">Únete al Club Pet</p>
+  <p class="panel-sub">Crea tu cuenta y disfruta de precios VIP, promociones exclusivas y atención personalizada.</p>
+
+  <div class="alert error-alert" id="reg-error"></div>
+
+  <div class="row-2">
+    <div class="field">
+      <label>Nombre</label>
+      <input type="text" id="reg-name" placeholder="Tu nombre">
+    </div>
+    <div class="field">
+      <label>Apellido</label>
+      <input type="text" id="reg-lastname" placeholder="Tu apellido">
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Correo electrónico</label>
+    <input type="email" id="reg-email" placeholder="tu-correo@ejemplo.com">
+  </div>
+
+  <div class="field">
+    <label>Dirección</label>
+    <input type="text" id="reg-address" placeholder="Calle y número">
+  </div>
+
+  <div class="field">
+    <label>Ciudad</label>
+    <input type="text" id="reg-city" placeholder="Tu ciudad">
+  </div>
+
+  <div class="row-2">
+    <div class="field">
+      <label>Contraseña</label>
+      <input type="password" id="reg-pass" placeholder="Mín. 8 caracteres">
+    </div>
+    <div class="field">
+      <label>Confirmar</label>
+      <input type="password" id="reg-pass2" placeholder="Repite">
+    </div>
+  </div>
+
+  <button class="auth-submit" id="reg-btn" onclick="doRegister()">Crear mi Cuenta</button>
+</div>
+
+  </div>
+</div>
+
+<div class="navbar__container">
+    <a href="index.html" class="navbar__logo">
+        <div class="navbar__logo-icon">
+            <i data-lucide="paw-print" style="width:24px; height:24px;"></i>
+        </div>
+        <span class="navbar__logo-text">Kanu <span class="text-brand">&</span> Amigos</span>
+    </a>
+
+    <ul class="navbar__desktop-menu" id="desktop-menu">
+        <li><a href="index.html" class="navbar__link" data-path="index.html">Inicio</a></li>
+        <li><a href="shop.html" class="navbar__link" data-path="shop.html">Tienda</a></li>
+        <li><a href="services.html" class="navbar__link" data-path="services.html">Servicios</a></li>
+        <li><a href="aboutus.html" class="navbar__link" data-path="aboutus.html">Nosotros</a></li>
+    </ul>
+
+    <div class="navbar__desktop-actions">
+        <a href="cart.html" class="navbar__cart-btn">
+            <i data-lucide="shopping-cart" style="width:22px; height:22px;"></i>
+            <span class="navbar__cart-badge" id="desktop-cart-badge" style="display: none;">0</span>
+        </a>
+        <a href="#" class="navbar__cta-btn" id="auth-btn" onclick="document.getElementById('auth-modal').classList.add('is-open'); return false;">
+            Login / Registro
+        </a>
+    </div>
+
+    <div class="navbar__mobile-actions">
+        <a href="cart.html" class="navbar__cart-btn">
+            <i data-lucide="shopping-cart" style="width:20px; height:20px;"></i>
+            <span class="navbar__cart-badge navbar__cart-badge--mobile" id="mobile-cart-badge" style="display: none;">0</span>
+        </a>
+        <button id="menu-toggle" class="navbar__hamburger" aria-label="Abrir menú">
+            <i data-lucide="x" style="width:24px; height:24px;" class="icon-close"></i>
+            <i data-lucide="menu" style="width:24px; height:24px;" class="icon-menu"></i>
+        </button>
+    </div>
+</div>
+
+<div class="navbar__mobile-menu" id="mobile-menu">
+    <a href="index.html" class="navbar__mobile-link" data-path="index.html">Inicio</a>
+    <a href="shop.html" class="navbar__mobile-link" data-path="shop.html">Tienda</a>
+    <a href="services.html" class="navbar__mobile-link" data-path="services.html">Servicios</a>
+    <a href="aboutus.html" class="navbar__mobile-link" data-path="aboutus.html">Nosotros</a>
+</div>

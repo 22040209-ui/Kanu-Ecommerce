@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra - Kanu & Amigos</title>
+    <link rel="stylesheet" href="checkout.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+    <div class="checkout-container">
+        
+        <div id="state-empty" class="state-empty" style="display: none;">
+            <p>El carrito está vacío.</p>
+        </div>
+
+        <div id="state-success" class="state-success" style="display: none;">
+            <div class="state-success__icon-wrapper">
+                <i data-lucide="check-circle" style="width:48px; height:48px;"></i>
+            </div>
+            <h2 class="state-success__title">¡Gracias por tu compra!</h2>
+            <p class="state-success__text">
+                Tu pedido ha sido confirmado y pronto estará en camino para alegrar a tu mascota.
+            </p>
+            <button id="btn-back-home" class="state-success__btn">Volver al inicio</button>
+        </div>
+
+        <div id="state-form">
+            <h1 class="checkout-title">Finalizar Compra</h1>
+            
+            <div class="checkout-layout">
+                
+                <div class="checkout-forms">
+                    <form id="checkout-form">
+                        
+                        <div class="checkout-card">
+                            <h2 class="checkout-card__title">Información de Envío</h2>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">Nombre completo</label>
+                                    <input type="text" id="name" name="name" required class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Correo electrónico</label>
+                                    <input type="email" id="email" name="email" required class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address" class="form-label">Dirección</label>
+                                    <input type="text" id="address" name="address" required class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="city" class="form-label">Ciudad</label>
+                                    <input type="text" id="city" name="city" required class="form-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="checkout-card" style="margin-top: 1.5rem;">
+                            <h2 class="checkout-card__title">Pago Simulado</h2>
+                            <div class="form-group">
+                                <label for="card" class="form-label">Número de Tarjeta </label>
+                                <input type="text" id="card" name="card" placeholder="0000 0000 0000 0000" required class="form-input">
+                            </div>
+                        </div>
+
+                        <button type="submit" id="btn-pay" class="btn-pay">
+                            Pagar $<span id="btn-pay-amount">0.00</span>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="checkout-summary">
+                    <h3 class="checkout-summary__title">Resumen de tu pedido</h3>
+                    <ul class="checkout-summary__list" id="summary-list">
+                 
+                    </ul>
+                    <div class="checkout-summary__total">
+                        <span>Total</span>
+                        <span id="summary-total" class="checkout-summary__price">$0.00</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="checkout.js"></script>
+</body>
+</html>

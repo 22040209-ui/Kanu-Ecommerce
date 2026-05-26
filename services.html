@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - Kanu & Amigos</title>
+    <link rel="stylesheet" href="services.css">
+       <link rel="stylesheet" href="navbar.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+ <nav class="navbar" id="main-navbar">
+        <div id="navbar-placeholder">
+       </div>
+    </nav>
+    <section class="services-hero">
+        <div class="services-hero__bg">
+            <img src="img/perro.jpg" alt="Estética canina">
+        </div>
+        <div class="services-hero__content">
+            <h1 class="services-hero__title">Estética Canina Profesional</h1>
+            <p class="services-hero__text">
+                Consiente a tu mascota con nuestros servicios de spa, baño y peluquería. Expertos dedicados a que tu amigo se vea y se sienta espectacular.
+            </p>
+        </div>
+    </section>
+
+    <div class="services-layout">
+        <div class="services-grid">
+            
+            <div class="services-list">
+                <h2 class="services-list__title">Nuestros Tratamientos</h2>
+                
+                <div class="service-item">
+                    <div class="service-item__icon">
+                        <i data-lucide="scissors" style="width:24px; height:24px;"></i>
+                    </div>
+                    <div class="service-item__content">
+                        <h3 class="service-item__title">Corte Completo</h3>
+                        <p class="service-item__text">Corte específico según la raza, limpieza de oídos, corte de uñas y vaciado de glándulas.</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-item__icon">
+                        <i data-lucide="sparkles" style="width:24px; height:24px;"></i>
+                    </div>
+                    <div class="service-item__content">
+                        <h3 class="service-item__title">Baño Spa</h3>
+                        <p class="service-item__text">Baño con shampoo premium, masaje relajante, secado y cepillado profundo.</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-item__icon">
+                        <i data-lucide="clock" style="width:24px; height:24px;"></i>
+                    </div>
+                    <div class="service-item__content">
+                        <h3 class="service-item__title">Servicio Express</h3>
+                        <p class="service-item__text">Baño y secado rápido para perros ocupados. Listo en menos de 1 hora.</p>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="booking-card">
+                <h3 class="booking-card__title">
+                    <i data-lucide="calendar" style="width:24px; height:24px;"></i>
+                    Agendar Cita
+                </h3>
+                
+             <div id="booking-success" class="booking-card__alert" style="display: none;" role="alert">
+                    <p class="booking-card__alert-title">¡Solicitud Enviada!</p>
+                    <p>Nos pondremos en contacto contigo para confirmar la hora.</p>
+                </div>
+
+        <form id="booking-form" class="booking-form" action="guardar_cita.php" method="POST">
+    <div class="form-group">
+        <label for="owner-name" class="form-label">Nombre del Dueño</label>
+        <input type="text" name="owner-name" id="owner-name" required class="form-input">
+    </div>
+    <div class="form-group">
+        <label for="pet-name" class="form-label">Nombre de la Mascota</label>
+        <input type="text" name="pet-name" id="pet-name" required class="form-input">
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="booking-date" class="form-label">Fecha Preferida</label>
+            <input type="date" name="booking-date" id="booking-date" required class="form-input">
+        </div>
+        <div class="form-group">
+            <label for="booking-time" class="form-label">Hora Preferida</label>
+            <input type="time" name="booking-time" id="booking-time" required class="form-input">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="service-type" class="form-label">Servicio de Interés</label>
+        <select name="service-type" id="service-type" class="form-input">
+            <option>Corte Completo</option>
+            <option>Baño Spa</option>
+            <option>Servicio Express</option>
+            <option>Corte de Uñas</option>
+        </select>
+    </div>
+    <button type="submit" class="form-submit-btn">Solicitar Cita</button>
+</form>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="component-loader.js"></script>
+</body>
+</html>

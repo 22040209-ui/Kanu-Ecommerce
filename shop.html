@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda - Kanu & Amigos</title>
+    <link rel="stylesheet" href="shop.css">
+    
+        <link rel="stylesheet" href="navbar.css">
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+ <nav class="navbar" id="main-navbar">
+        <div id="navbar-placeholder">
+        </div>
+    </nav>
+    <div class="shop">
+        
+        <div class="promo-carousel" id="promo-carousel">
+            <div class="promo-carousel__viewport">
+                <div class="promo-carousel__track" id="promo-track">
+                </div>
+            </div>
+
+            <button id="promo-prev" class="promo-carousel__nav promo-carousel__nav--left">
+                <i data-lucide="chevron-left" style="width:32px; height:32px;"></i>
+            </button>
+            <button id="promo-next" class="promo-carousel__nav promo-carousel__nav--right">
+                <i data-lucide="chevron-right" style="width:32px; height:32px;"></i>
+            </button>
+
+            <div class="promo-carousel__dots" id="promo-dots">
+           
+            </div>
+        </div>
+          <div class="category-rail">
+            <h2 class="section-title section-title--left">Explora por Categoría</h2>
+            <div class="category-rail__track" id="category-track">
+           </div>
+        </div>
+
+         <div class="shop__layout">
+            
+            <aside id="sidebar" class="sidebar">
+                <div class="sidebar__inner">
+                    <div class="sidebar__header">
+                        <h3 class="sidebar__title">
+                            <i data-lucide="sliders-horizontal" style="width:20px; height:20px;"></i>
+                            Filtros
+                        </h3>
+                        <button id="close-filters-btn" class="sidebar__close-btn">
+                            <i data-lucide="x" style="width:24px; height:24px;"></i>
+                        </button>
+                    </div>
+
+                    <div class="sidebar__content">
+                        <div class="filter-group">
+                            <label class="filter-label">Buscar</label>
+                            <div class="search-input-wrapper">
+                                <i data-lucide="search" class="search-icon" style="width:18px; height:18px;"></i>
+                                <input type="text" id="search-input" placeholder="¿Qué buscas hoy?" class="input-field">
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <label class="filter-label">Precio Máximo</label>
+                            <div class="range-wrapper">
+                                <input type="range" id="price-range" min="0" max="3000" step="50" value="3000" class="range-input">
+                                <div class="range-labels">
+                                    <span class="range-text">$0</span>
+                                    <span id="price-value" class="range-text range-text--active">$3000</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <label class="filter-label">Categoría</label>
+                            <div class="category-buttons" id="category-buttons">
+                                <button data-category="Todos" class="cat-btn cat-btn--active">Todas</button>
+                                <button data-category="Alimentación" class="cat-btn">Alimentación</button>
+                                <button data-category="Accesorios" class="cat-btn">Accesorios</button>
+                                <button data-category="Higiene" class="cat-btn">Higiene</button>
+                                <button data-category="Entretenimiento" class="cat-btn">Entretenimiento</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="main-content">
+                <div class="main-header">
+                    <h1 class="main-title">
+                        <span id="current-category">Todos los productos</span>
+                        <span id="results-count" class="results-count">(0 resultados)</span>
+                    </h1>
+                    <button id="open-filters-btn" class="mobile-filter-btn">
+                        <i data-lucide="filter" style="width:20px; height:20px;"></i>
+                    </button>
+                </div>
+
+                <div id="product-grid" class="product-grid"></div>
+
+                <div id="empty-state" class="empty-state" style="display: none;">
+                    <div class="empty-state__icon-wrapper">
+                        <i data-lucide="search" style="width:32px; height:32px;"></i>
+                    </div>
+                    <p class="empty-state__text">No encontramos lo que buscas</p>
+                    <button id="clear-filters-btn" class="btn-primary">Limpiar filtros</button>
+                </div>
+            </main>
+
+        </div>
+    </div>
+<!-- PRODUCT DETAIL PANEL -->
+<div class="detail-overlay" id="detail-overlay"></div>
+
+<div class="detail-panel" id="detail-panel">
+    <div class="detail-panel__topbar">
+        <button class="detail-panel__back" id="detail-close">
+            <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
+            Volver al catálogo
+        </button>
+    </div>
+
+    <div class="detail-panel__body">
+        <div class="detail-panel__img-wrap">
+            <img id="detail-img" src="" alt="">
+        </div>
+
+        <div class="detail-panel__info">
+            <span class="detail-panel__cat" id="detail-cat"></span>
+            <h1 class="detail-panel__name" id="detail-name"></h1>
+
+            <div class="detail-panel__prices">
+                <span class="detail-panel__price" id="detail-price"></span>
+                <span class="detail-panel__original-price" id="detail-original"></span>
+            </div>
+
+            <p class="detail-panel__desc" id="detail-desc"></p>
+
+            <div class="detail-panel__badges">
+                <span class="detail-panel__badge">
+                    <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
+                    <span id="detail-stock"></span>
+                </span>
+                <span class="detail-panel__badge">
+                    <i data-lucide="package" style="width:16px;height:16px;"></i>
+                    Envío a todo el país
+                </span>
+            </div>
+
+            <button class="detail-panel__add-btn" id="detail-add-btn">
+                <i data-lucide="shopping-cart" style="width:20px;height:20px;"></i>
+                Agregar al Carrito
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="cart-toast" id="cart-toast"></div>
+    <script src="component-loader.js"></script>
+    <script src="shop.js"></script>
+</body>
+</html>
