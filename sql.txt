@@ -1,0 +1,194 @@
+CREATE DATABASE IF NOT EXISTS kanu_amigos;
+USE kanu_amigos;
+
+CREATE TABLE citas (
+    id              INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_dueno    VARCHAR(100) NOT NULL,
+    nombre_mascota  VARCHAR(100) NOT NULL,
+    fecha           DATE         NOT NULL,
+    hora            TIME         NOT NULL,
+    servicio        VARCHAR(100) NOT NULL,
+    fecha_registro  DATETIME     NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE client (
+    id       INT AUTO_INCREMENT PRIMARY KEY,
+    name     VARCHAR(150) NOT NULL,
+    email    VARCHAR(150) NOT NULL UNIQUE,
+    address  VARCHAR(255) NOT NULL,
+    city     VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE client_auth (
+    id         INT AUTO_INCREMENT PRIMARY KEY,
+    client_id  INT          NOT NULL UNIQUE,
+    email      VARCHAR(150) NOT NULL UNIQUE,
+    password   VARCHAR(255) NOT NULL,
+    FOREIGN KEY (client_id) REFERENCES client(id) ON DELETE CASCADE
+);
+
+CREATE TABLE productos (
+    id             INT AUTO_INCREMENT PRIMARY KEY,
+    name           VARCHAR(150)   NOT NULL,
+    category       VARCHAR(100)   NOT NULL,
+    price          DECIMAL(10,2)  NOT NULL,
+    originalPrice  DECIMAL(10,2)  DEFAULT NULL,
+    image          VARCHAR(500)   NOT NULL
+);
+
+CREATE TABLE promociones (
+    id           INT AUTO_INCREMENT PRIMARY KEY,
+    titulo       VARCHAR(200) NOT NULL,
+    descripcion  TEXT         NOT NULL,
+    texto_boton  VARCHAR(100) NOT NULL,
+    enlace       VARCHAR(500) NOT NULL,
+    imagen       VARCHAR(500) NOT NULL,
+    tema         VARCHAR(50)  NOT NULL
+);
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    client_id INT NULL,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    address VARCHAR(200) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    total DECIMAL(10,2) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (client_id) REFERENCES client(id) ON DELETE SET NULL
+);
+
+CREATE TABLE order_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    name VARCHAR(150) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    qty INT NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+);
+INSERT INTO citas (nombre_dueno, nombre_mascota, fecha, hora, servicio) VALUES
+('Carlos Mendoza',    'Rocky',    '2025-06-01', '09:00:00', 'Baño y corte'),
+('Laura Pérez',       'Luna',     '2025-06-02', '10:00:00', 'Vacunación'),
+('Jorge Ramírez',     'Thor',     '2025-06-03', '11:00:00', 'Consulta general'),
+('Ana García',        'Bella',    '2025-06-04', '09:30:00', 'Desparasitación'),
+('Luis Torres',       'Max',      '2025-06-05', '12:00:00', 'Baño y corte'),
+('María López',       'Coco',     '2025-06-06', '08:00:00', 'Revisión dental'),
+('Pedro Hernández',   'Simba',    '2025-06-07', '10:30:00', 'Vacunación'),
+('Sofía Martínez',    'Nala',     '2025-06-08', '14:00:00', 'Consulta general'),
+('Roberto Díaz',      'Mochi',    '2025-06-09', '09:00:00', 'Corte de uñas'),
+('Patricia Ruiz',     'Toby',     '2025-06-10', '11:00:00', 'Baño y corte'),
+('Miguel Sánchez',    'Lola',     '2025-06-11', '13:00:00', 'Desparasitación'),
+('Valeria Castro',    'Bruno',    '2025-06-12', '08:30:00', 'Vacunación'),
+('Fernando Morales',  'Kira',     '2025-06-13', '10:00:00', 'Revisión dental'),
+('Gabriela Vargas',   'Paco',     '2025-06-14', '15:00:00', 'Consulta general'),
+('Andrés Jiménez',    'Canela',   '2025-06-15', '09:00:00', 'Baño y corte'),
+('Diana Flores',      'Dante',    '2025-06-16', '11:30:00', 'Corte de uñas'),
+('Héctor Romero',     'Pelusa',   '2025-06-17', '10:00:00', 'Vacunación'),
+('Claudia Ortega',    'Chip',     '2025-06-18', '12:00:00', 'Desparasitación'),
+('Oscar Navarro',     'Duque',    '2025-06-19', '09:30:00', 'Consulta general'),
+('Elena Guerrero',    'Mía',      '2025-06-20', '08:00:00', 'Baño y corte'),
+('Tomás Aguilar',     'Rex',      '2025-06-21', '14:30:00', 'Vacunación'),
+('Mónica Paredes',    'Nina',     '2025-06-22', '11:00:00', 'Revisión dental'),
+('Ernesto Vega',      'Gordo',    '2025-06-23', '09:00:00', 'Corte de uñas'),
+('Lucía Medina',      'Chispa',   '2025-06-24', '10:30:00', 'Consulta general'),
+('Raúl Cabrera',      'Sultan',   '2025-06-25', '13:30:00', 'Baño y corte');
+
+
+INSERT INTO client (name, email, address, city) VALUES
+('Carlos Mendoza',   'carlos.mendoza@email.com',   'Av. Insurgentes 123',      'Ciudad de México'),
+('Laura Pérez',      'laura.perez@email.com',       'Calle Reforma 45',         'Guadalajara'),
+('Jorge Ramírez',    'jorge.ramirez@email.com',     'Blvd. Juárez 78',          'Monterrey'),
+('Ana García',       'ana.garcia@email.com',        'Privada Las Flores 12',    'Puebla'),
+('Luis Torres',      'luis.torres@email.com',       'Av. Benito Juárez 200',    'Tijuana'),
+('María López',      'maria.lopez@email.com',       'Calle 5 de Mayo 67',       'León'),
+('Pedro Hernández',  'pedro.hernandez@email.com',   'Av. Universidad 340',      'Querétaro'),
+('Sofía Martínez',   'sofia.martinez@email.com',    'Paseo del Norte 89',       'Mérida'),
+('Roberto Díaz',     'roberto.diaz@email.com',      'Calle Morelos 15',         'San Luis Potosí'),
+('Patricia Ruiz',    'patricia.ruiz@email.com',     'Av. Hidalgo 230',          'Aguascalientes'),
+('Miguel Sánchez',   'miguel.sanchez@email.com',    'Calle Independencia 99',   'Saltillo'),
+('Valeria Castro',   'valeria.castro@email.com',    'Blvd. Díaz Ordaz 456',     'Culiacán'),
+('Fernando Morales', 'fernando.morales@email.com',  'Av. López Mateos 78',      'Hermosillo'),
+('Gabriela Vargas',  'gabriela.vargas@email.com',   'Calle Allende 33',         'Chihuahua'),
+('Andrés Jiménez',   'andres.jimenez@email.com',    'Privada del Sol 55',       'Acapulco'),
+('Diana Flores',     'diana.flores@email.com',      'Av. Constitución 111',     'Veracruz'),
+('Héctor Romero',    'hector.romero@email.com',     'Calle Zaragoza 22',        'Oaxaca'),
+('Claudia Ortega',   'claudia.ortega@email.com',    'Av. Guerrero 300',         'Torreón'),
+('Oscar Navarro',    'oscar.navarro@email.com',     'Calle Obregón 44',         'Cancún'),
+('Elena Guerrero',   'elena.guerrero@email.com',    'Paseo de la Reforma 600',  'Ciudad de México'),
+('Tomás Aguilar',    'tomas.aguilar@email.com',     'Av. Revolución 88',        'Guadalajara'),
+('Mónica Paredes',   'monica.paredes@email.com',    'Calle Victoria 17',        'Monterrey'),
+('Ernesto Vega',     'ernesto.vega@email.com',      'Blvd. Manuel Ávila 250',   'Puebla'),
+('Lucía Medina',     'lucia.medina@email.com',      'Av. Tecnológico 400',      'Querétaro'),
+('Raúl Cabrera',     'raul.cabrera@email.com',      'Calle Madero 66',          'León');
+
+INSERT INTO client_auth (client_id, email, password) VALUES
+(1,  'carlos.mendoza@email.com',   'carlos123'),
+(2,  'laura.perez@email.com',      'laura456'),
+(3,  'jorge.ramirez@email.com',    'jorge789'),
+(4,  'ana.garcia@email.com',       'ana1234'),
+(5,  'luis.torres@email.com',      'luis5678'),
+(6,  'maria.lopez@email.com',      'maria321'),
+(7,  'pedro.hernandez@email.com',  'pedro654'),
+(8,  'sofia.martinez@email.com',   'sofia987'),
+(9,  'roberto.diaz@email.com',     'roberto111'),
+(10, 'patricia.ruiz@email.com',    'patricia222'),
+(11, 'miguel.sanchez@email.com',   'miguel333'),
+(12, 'valeria.castro@email.com',   'valeria444'),
+(13, 'fernando.morales@email.com', 'fernando555'),
+(14, 'gabriela.vargas@email.com',  'gabriela666'),
+(15, 'andres.jimenez@email.com',   'andres777'),
+(16, 'diana.flores@email.com',     'diana888'),
+(17, 'hector.romero@email.com',    'hector999'),
+(18, 'claudia.ortega@email.com',   'claudia000'),
+(19, 'oscar.navarro@email.com',    'oscar112'),
+(20, 'elena.guerrero@email.com',   'elena223'),
+(21, 'tomas.aguilar@email.com',    'tomas334'),
+(22, 'monica.paredes@email.com',   'monica445'),
+(23, 'ernesto.vega@email.com',     'ernesto556'),
+(24, 'lucia.medina@email.com',     'lucia667'),
+(25, 'raul.cabrera@email.com',     'raul778');
+
+INSERT INTO productos (name, category, price, originalPrice, image) VALUES
+('Croquetas Premium Adulto 5kg',       'Alimento',    350.00, 420.00, 'https://res.cloudinary.com/detf8rowo/image/upload/v1780702764/download_pc2cbg.jpg'),
+('Croquetas Cachorro 3kg',             'Alimento',    280.00,   NULL, 'https://res.cloudinary.com/detf8rowo/image/upload/v1780702717/download_o5uwom.jpg'),
+('Alimento Húmedo Pollo 400g',         'Alimento',     45.00,  55.00, 'https://res.cloudinary.com/detf8rowo/image/upload/v1780702686/download_e0xfyg.jpg'),
+('Snack Dental Perro Mediano',         'Snacks',       89.00,   NULL, 'https://res.cloudinary.com/detf8rowo/image/upload/v1780702622/download_nj5um6.jpg'),
+('Premio Natural Res 200g',            'Snacks',       75.00,  90.00, 'https://res.cloudinary.com/detf8rowo/image/upload/v1780702592/Premios-Naturales-para-Perro_idlykh.webp'),
+('Shampoo Antipulgas 500ml',           'Higiene',     120.00,   NULL, 'https://res.cloudinary.com/detf8rowo/image/upload/v1780702559/download_grfhuk.jpg'),
+('Acondicionador Canino 400ml',        'Higiene',      95.00, 115.00, 'https://res.cloudinary.com/detf8rowo/image/upload/v1780702481/download_sdzjhi.jpg'),
+('Cepillo de Dientes para Perro',      'Higiene',      55.00,   NULL, 'https://res.cloudinary.com/detf8rowo/image/upload/v1780702444/download_ktcwgz.jpg'),
+('Collar Ajustable Talla M',           'Accesorios',   85.00,  100.00,'https://res.cloudinary.com/detf8rowo/image/upload/v1780702407/download_vuvc80.jpg'),
+('Correa Retráctil 5m',                'Accesorios',  199.00,  250.00,'https://res.cloudinary.com/detf8rowo/image/upload/v1780702370/download_bvlspw.jpg'),
+('Arnés Ergonómico Talla S',           'Accesorios',  220.00,   NULL, 'https://res.cloudinary.com/detf8rowo/image/upload/v1780702328/download_a9ba2x.jpg'),
+('Juguete Kong Clásico',               'Juguetes',    180.00,  210.00,'https://res.cloudinary.com/detf8rowo/image/upload/v1780702253/download_xyzo08.jpg'),
+('Pelota de Caucho Natural',           'Juguetes',     60.00,   NULL, 'https://res.cloudinary.com/detf8rowo/image/upload/v1780702221/download_ao7zeu.jpg'),
+('Cuerda de Jalar Grande',             'Juguetes',     75.00,   85.00,'https://res.cloudinary.com/detf8rowo/image/upload/v1780702182/download_b24umw.jpg'),
+('Cama Ortopédica Talla L',            'Descanso',    650.00,  800.00,'https://res.cloudinary.com/detf8rowo/image/upload/v1780702136/download_ofhqpn.jpg'),
+('Casa Portátil para Perro',           'Descanso',    450.00,   NULL, 'https://res.cloudinary.com/detf8rowo/image/upload/v1780702105/download_izkpdr.jpg'),
+('Cobija Polar Mascota',               'Descanso',    130.00,  155.00,'https://res.cloudinary.com/detf8rowo/image/upload/v1780702069/download_j7sxxc.jpg'),
+('Transportadora Rígida Talla M',      'Transporte',  380.00,  450.00,'https://res.cloudinary.com/detf8rowo/image/upload/v1780702016/download_qgg8au.jpg'),
+('Bolsa de Transporte Suave',          'Transporte',  290.00,   NULL, 'https://res.cloudinary.com/detf8rowo/image/upload/v1780701982/563a55a7-55c0-478f-901c-73feaab9ac07.e46dee6762622663041569e01eee9aa9_yg0fr7.avif'),
+('Bebedero Automático 2L',             'Alimentación',210.00,  260.00,'https://res.cloudinary.com/detf8rowo/image/upload/v1780701942/f8e17d17-35b4-415c-825a-ba1b50ac2543.91351788b9018a23d6b877a2c0280d6e_ezxxio.avif'),
+('Comedero de Acero Inoxidable',       'Alimentación', 95.00,   NULL, 'https://res.cloudinary.com/detf8rowo/image/upload/v1780701905/images_avmbck.jpg'),
+('Vitaminas Articulaciones 60 tabs',   'Salud',       320.00,  370.00,'https://res.cloudinary.com/detf8rowo/image/upload/v1780701837/download_nronr5.jpg'),
+('Antiparasitario Externo Pipeta',     'Salud',       150.00,   NULL, 'https://res.cloudinary.com/detf8rowo/image/upload/v1780701801/download_cny9nh.jpg'),
+('Ropa Impermeable Talla M',           'Ropa',        185.00,  220.00,'https://res.cloudinary.com/detf8rowo/image/upload/v1780701768/images_q1eiw5.jpg'),
+('Pañuelo Bandana Mascota',            'Ropa',         45.00,   NULL, 'https://res.cloudinary.com/detf8rowo/image/upload/v1780701716/download_dnds4j.jpg');
+
+INSERT INTO promociones (titulo, descripcion, texto_boton, enlace, imagen, tema) VALUES
+(
+  '¡Mes del Perro Feliz!',
+  'Durante todo junio obtén 20% de descuento en todos nuestros servicios de grooming y baño. Consiiente a tu mejor amigo con el mejor cuidado al mejor precio. ¡Agenda tu cita hoy y aprovecha esta oferta exclusiva!',
+  'Agendar cita',
+  'services.html',
+  'https://res.cloudinary.com/detf8rowo/image/upload/v1780701655/download_d4mksm.jpg',
+  'light'
+),
+(
+  'Kit Bienvenida para Cachorros',
+  'Lleva a tu nuevo cachorro su kit de bienvenida: incluye croquetas, juguete, collar y su primera consulta gratis. Todo lo que necesita para empezar su vida con la mejor nutrición y cuidados. Válido hasta agotar existencias.',
+  'Ver kit',
+  'shop.html',
+  'https://res.cloudinary.com/detf8rowo/image/upload/v1780701599/download_zyitl7.jpg',
+  'dark'
+);

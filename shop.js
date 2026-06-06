@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
         }, 2000);
 
-        showToast(`${product.name.split(' ').slice(0, 3).join(' ')} agregado 🛒`);
+        showToast(`${product.name.split(' ').slice(0, 3).join(' ')} agregado al carrito`);
     }
 
     function showToast(msg) {

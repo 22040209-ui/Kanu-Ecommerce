@@ -6,22 +6,22 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(response => response.text())
             .then(html => {
                 navbarPlaceholder.innerHTML = html;
-                
-                if (window.lucide) {
-                    lucide.createIcons();
-                }
 
-                // Mover el modal al body para que position:fixed funcione correctamente
+                if (window.lucide) lucide.createIcons();
+
                 const modal = document.getElementById('auth-modal');
                 if (modal) document.body.appendChild(modal);
-                
+
                 if (!window.navbarScriptLoaded) {
                     const script = document.createElement('script');
                     script.src = 'navbar.js';
+                    script.onload = () => {
+                        window.navbarScriptLoaded = true;
+                        initNavbar();
+                    };
                     document.body.appendChild(script);
-                    window.navbarScriptLoaded = true;
                 } else {
-                    window.dispatchEvent(new Event('navbar-ready'));
+                    initNavbar();
                 }
             })
             .catch(error => console.error('Error cargando la navbar:', error));

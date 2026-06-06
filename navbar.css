@@ -557,3 +557,30 @@
   color: #555;
   background: #f5f5f5;
 }
+.navbar__user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar__user-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-brand, #e67e22); 
+}
+
+.navbar__logout-btn {
+  background: transparent;
+  border: 1px solid currentColor;
+  color: inherit;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.navbar__logout-btn:hover {
+  opacity: 1;
+}

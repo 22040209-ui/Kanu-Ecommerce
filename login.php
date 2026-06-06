@@ -21,7 +21,7 @@ if ($result && $result->num_rows > 0) {
 
     $row = $result->fetch_assoc();
 
-    if (password_verify($password, $row['password'])) {
+    if ($password === $row['password']) {
         echo json_encode([
             'success' => true,
             'user' => [
